@@ -9,7 +9,8 @@ def index_blog(requests):
     return render(requests, "blog/blog-home.html", context)
 
 def single_blog(requests, pid):
-    post = get_object_or_404(Post, pk=pid)
+    posts = Post.objects.filter(status=1).exclude(published_date__gt=datetime.now())
+    post = get_object_or_404(posts, pk=pid)
     context = {'post': post}
 
     Post.objects.filter(id=pid).update(counted_views=F('counted_views') + 1)
