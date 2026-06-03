@@ -16,15 +16,15 @@ def single_blog(requests, pid):
     Post.objects.filter(id=pid).update(counted_views=F('counted_views') + 1)
 
     previous_post = (
-        Post.objects
-        .filter(published_date__lt=post.published_date, status=1)
+        posts
+        .filter(published_date__lt=post.published_date)
         .order_by('-published_date')
         .first()
     )
 
     next_post = (
-        Post.objects
-        .filter(published_date__gt=post.published_date, status=1)
+        posts
+        .filter(published_date__gt=post.published_date)
         .order_by('published_date')
         .first()
     )
