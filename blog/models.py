@@ -14,7 +14,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     image = models.ImageField(upload_to='blog', default='/blog/default.jpg')
     category = models.ManyToManyField(Category)
-    content = models.CharField(max_length=255)
+    content = models.TextField()
     counted_views = models.IntegerField(default=0)
     status = models.BooleanField(default=False)
     published_date = models.DateTimeField(null=True)
