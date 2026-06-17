@@ -1,5 +1,5 @@
 from django.contrib import admin
-from base_site.models import contact
+from base_site.models import contact, NewsLetter
 # Register your models here.
 
 
@@ -10,4 +10,5 @@ class ContactAdmin(admin.ModelAdmin):
     search_fields = ('name', 'subject', 'message')
     ordering = ["-created_date"]
     
+admin.site.register(NewsLetter)
 admin.site.register(contact, ContactAdmin)
