@@ -12,10 +12,7 @@ def index_about(request):
 
 def index_contact(request):
     if request.method == 'POST':
-        data = request.POST.copy()
-        data['name'] = 'Anonymous'
-
-        form = ContactForm(data)
+        form = ContactForm(request.POST)
         if form.is_valid():
             messages.add_message(request, messages.SUCCESS, 'Your ticket submitted successfully')
             form.save()
