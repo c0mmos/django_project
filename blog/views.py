@@ -5,12 +5,14 @@ from django.utils import timezone
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # Create your views here.
-def index_blog(requests, cat_name=None, auth_username=None):
+def index_blog(requests, cat_name=None, auth_username=None, tag_name=None):
     posts = Post.objects.filter(status=1, published_date__lte=timezone.now()).order_by('-published_date')
     if cat_name:
         posts = posts.filter(category__name=cat_name)
     if auth_username:
         posts = posts.filter(author__username=auth_username)
+    if tag_name:
+            posts = posts.filter(tag__name__in=[tag_name])
     posts = Paginator(posts, 2)
     try:
         page_number = requests.GET.get('page')
