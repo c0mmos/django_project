@@ -159,7 +159,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             </div>
         </footer>
 
-        <!-- {% include 'message.html' %} -->
         
         <!-- End footer Area -->	
         <script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
@@ -178,17 +177,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="{% static 'js/main.js' %}"></script>	
         <script src="{% static 'js/notifications.js' %}"></script>
         <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            {% if messages %}
-                {% for message in messages %}
-                    showNotification(
-                        "{{ message }}", 
-                        "{{ message.tags }}", 
-                        5000
-                    );
-                {% endfor %}
-            {% endif %}
-        });
-    </script>
+            document.addEventListener('DOMContentLoaded', function() {
+                {% if messages %}
+                    {% for message in messages %}
+                        showNotification(
+                            "{{ message }}", 
+                            "{{ message.tags }}", 
+                            5000
+                        );
+                    {% endfor %}
+                {% endif %}
+            });
+        </script>
     </body>
 </html>

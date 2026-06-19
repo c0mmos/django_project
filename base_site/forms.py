@@ -1,8 +1,9 @@
 from django import forms
 from base_site.models import contact, NewsLetter
+from captcha.fields import CaptchaField
 
 class ContactForm(forms.ModelForm):
-    # subject = forms.CharField(max_length=255, required=False)
+    captcha = CaptchaField()
 
     class Meta:
         model = contact

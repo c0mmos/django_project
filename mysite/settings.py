@@ -60,8 +60,12 @@ SUMMERNOTE_CONFIG = {
     },
 }
 
+MULTI_CAPTCHA_ADMIN = {
+    'engine': 'simple-captcha',
+}
 
 INSTALLED_APPS = [
+    'multi_captcha_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -70,6 +74,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'base_site.apps.BaseSiteConfig',
     'robots',
+    'captcha',
     "debug_toolbar",
     'django.contrib.sites',
     'django.contrib.humanize',
@@ -171,11 +176,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MESSAGE_TAGS = {
-    messages.DEBUG: 'alert-info',
-    messages.INFO: 'alert-info',
-    messages.SUCCESS: 'alert-success',
-    messages.WARNING: 'alert-warning',
-    messages.ERROR: 'alert-danger',
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'error',
 }
 
 INTERNAL_IPS = [

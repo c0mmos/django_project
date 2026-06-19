@@ -14,10 +14,10 @@ def index_contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            messages.add_message(request, messages.SUCCESS, 'Your ticket submitted successfully')
+            messages.add_message(request, messages.SUCCESS, 'Your Ticket submitted successfully')
             form.save()
         else:
-            messages.add_message(request, messages.ERROR, "Your ticket did not submitted")
+            messages.add_message(request, messages.ERROR, "Your Ticket did not submitted")
 
     form = ContactForm()
     return render(request, 'website/contact.html', {'form': form})
