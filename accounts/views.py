@@ -8,6 +8,10 @@ from django.contrib.auth.models import User
 from .models import PasswordResetCode
 import secrets
 from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
+
 
 # Create your views here.
 
@@ -92,9 +96,24 @@ def forgot_password(request):
         reset_obj.save()
 
         send_mail(
-            'Password Reset',
-            f'Your reset code is: {code}',
-            'Travelista@google.com',
+            'Password Reset Verification Code',
+            f'''Hello,
+
+        We received a request to reset the password for your account.
+
+        Your verification code is:
+
+        {code}
+
+        This code will expire in 15 minutes.
+
+        If you did not request a password reset, you can safely ignore this email. Your password will remain unchanged.
+
+        For security reasons, please do not share this code with anyone.
+
+        Thank you,
+        Travelista Site Team''',
+            settings.EMAIL_HOST_USER,
             [user.email],
         )
 
@@ -133,19 +152,31 @@ def reset_password(request):
         return redirect('/')
     
     if request.method == 'POST':
-        password = request.POST.get('password')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
         user = User.objects.get(id=request.session.get('reset_user_id'))
 
-        user.set_password(password)
-        user.save()
+        if password1 == password2:
+            try: 
+                validate_password(password1)
+                user.set_password(password1)
+                user.save()
 
-        request.session.pop('reset_pending', None)
-        request.session.pop('reset_verified', None)
-        request.session.pop('reset_user_id', None)
+                request.session.pop('reset_pending', None)
+                request.session.pop('reset_verified', None)
+                request.session.pop('reset_user_id', None)
 
-        PasswordResetCode.objects.filter(user=user).delete()
+                PasswordResetCode.objects.filter(user=user).delete()
 
-        messages.add_message(request, messages.SUCCESS, 'Password change was successful')
-        return redirect('/accounts/login')
+                messages.add_message(request, messages.SUCCESS, 'Password change was successful')
+                return redirect('/accounts/login')
+            
+            except ValidationError as e:
+                for error in e.messages:
+                    messages.add_message(request, messages.ERROR, error)
+        
+        else:
+            messages.add_message(request, messages.ERROR, 'The two password are not same. Try again')
+            return redirect('/accounts/reset-password')
     
     return render(request, 'accounts/reset-password.html')
