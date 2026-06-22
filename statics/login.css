@@ -1,0 +1,125 @@
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+h2 {
+    text-align: center;
+    margin: 40px;
+    color: #04091e;
+}
+#body {
+    background-color: #FFF1BF;
+    padding: 20px;
+    border-radius: 20px;
+    margin-left: 1100px;
+    margin-right: 300px;
+    margin-top: 100px;
+    height: 600px;
+    min-height: 420px;
+    position: absolute;
+    width: 400px;
+    z-index: 2;
+    border: 1px solid #f8b600;
+    box-shadow: 0 0 10px #f8b600;
+}
+form {
+    margin: 10px 20px 0 20px;
+    display: block;
+}
+p {
+    text-align: center;
+    text-decoration: none;
+    color: #04091e;
+}
+
+a {
+    text-align: center;
+    text-decoration: none;
+    color: #0023b3;
+}
+
+/* Input group: icon + input */
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    background: white;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid #f8b600;
+    color: #04091e;
+}
+.input-icon {
+    width: 28px;
+    height: 28px;
+    opacity: 0.8;
+    flex: 0 0 28px;
+    display: block;
+    pointer-events: none;
+}
+.input-group input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 6px 4px;
+    background: transparent;
+    width: 100%;
+    color: #04091e;
+}
+
+/* Submit */
+#Submit {
+    height: 50px;
+    border-radius: 20px;
+    border: none;
+    background-color: #f8b600;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    width: calc(100% - 40px);
+    margin: 20px;
+}
+
+/* social icons row */
+.social-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 30px;
+}
+.social-icon {
+    width: 36px;
+    height: 36px;
+    opacity: 0.95;
+}
+
+/* header styles left as-is but ensure responsiveness */
+#logo, #logo1, #logo2 {
+    width: 40px;
+    height: 40px;
+    margin-top: 50px;
+    margin-left: 70px;
+    text-align: center;
+}
+#header {
+    background-color: #FFF1BF;
+    border-radius: 20px;
+    width: 50%;
+    height: 750px;
+    position: absolute;
+    z-index: 1;
+    margin-left: 350px;
+    margin-top: 70px;
+    box-shadow: 0 0 10px #f8b600;
+    border: 1px solid #f8b600;
+}
+#header-logo {
+    margin-top: 80px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    #body { margin-left: 20px; margin-right: 20px; position: static; width: auto; }
+    #header { display: none; }
+}

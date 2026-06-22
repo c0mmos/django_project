@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apogee</title>
+    <link rel="icon" href="{% static 'Apogee-Logo.png' %}">
+    <link rel="stylesheet" href="{% static 'signup.css' %}">
+</head>
+<body>
+    <div id="header">
+        <img src="{% static 'at.png' %}" alt="login logo" id="header-logo">
+    </div>
+    <div id="body">
+        <h2>Create Account</h2>
+        <form action="{% url 'accounts:signup' %}" method="post">
+            {% csrf_token %}
+            
+            <div class="input-group">
+                <img src="{% static 'at_sign.png' %}" alt="at icon" class="input-icon">
+                <input type="email" id="Email" name="email" placeholder="Email" required>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="Username" name="first_name" placeholder="First Name" required>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="Username" name="last_name" placeholder="Last Name" required>
+            </div>
+
+            <div class="input-group">
+                <img src="{% static 'user.png' %}" alt="user icon" class="input-icon">
+                <input type="text" id="Username" name="username" placeholder="Username" required>
+            </div>
+
+            <div class="input-group">
+                <img src="{% static 'lock.png' %}" alt="lock icon" class="input-icon">
+                <input type="password" id="Password" name="password1" placeholder="Password" required>
+            </div>
+
+            <div class="input-group">
+                <img src="{% static 'lock.png' %}" alt="lock icon" class="input-icon">
+                <input type="password" id="Password" name="password2" placeholder="Confirm Password" required>
+            </div>
+
+            <input type="submit" value="Sign Up" id="Submit">
+        </form>
+        <p>Already have an account? <a href="{% url 'accounts:login' %}">Log in</a></p>
+    </div>
+
+    <script src="{% static 'js/main.js' %}"></script>	
+    <script src="{% static 'js/notifications.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            {% if messages %}
+                {% for message in messages %}
+                    showNotification(
+                        "{{ message }}", 
+                        "{{ message.tags }}", 
+                        5000
+                    );
+                {% endfor %}
+            {% endif %}
+        });
+    </script>
+</body>
+</html>

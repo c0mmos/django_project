@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apogee</title>
+    <link rel="icon" href="{% static 'Apogee-Logo.png' %}">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+</head>
+<body>
+    <div id="header">
+        <img src="{% static 'at.png' %}" alt="login logo" id="header-logo">
+    </div>
+
+{% block main %}
+
+{% endblock %}
+
+
+    <script src="{% static 'js/main.js' %}"></script>	
+    <script src="{% static 'js/notifications.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            {% if messages %}
+                {% for message in messages %}
+                    showNotification(
+                        "{{ message }}", 
+                        "{{ message.tags }}", 
+                        5000
+                    );
+                {% endfor %}
+            {% endif %}
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends 'account.html' %}
+{% load static %}
+
+{% block main %}
+
+    <div id="body">
+        <h2>Enter the code</h2>
+        <p>We've sent you a 6-digit verify code enter the code below</p>
+        <form action="{% url 'accounts:verify-code' %}" method="post">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <input type="text" id="Username" name="code" placeholder="6-digit code" required>
+            </div>
+
+            <input type="submit" value="Submit" id="Submit">
+        </form>
+    </div>
+
+{% endblock %}
