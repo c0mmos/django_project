@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404-Page not found</title>
+    <link rel="stylesheet" href="{% static '404.css' %}">
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-card">
+            <h1>404</h1>
+            <p class="title">Oops! Page Not Found</p>
+            <p class="description">
+                The page you're looking for doesn't exist, was moved,
+                or the URL might be incorrect.
+            </p>
+            <a href="{% url 'website:index' %}" class="home-btn">
+                Go Home
+            </a>
+        </div>
+    </div>
+</body>
+</html>

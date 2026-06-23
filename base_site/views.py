@@ -33,3 +33,9 @@ def index_newsletter(request):
             messages.add_message(request, messages.ERROR, "Your ticket did not submitted")
     else:
         return HttpResponseRedirect('/')
+    
+def handler404(request, exception):
+    return render(request, 'error_codes/404.html', status=404)
+
+def handler500(request):
+    return render(request, 'error_codes/500.html', status=500)
