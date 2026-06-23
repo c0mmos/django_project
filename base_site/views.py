@@ -3,7 +3,13 @@ from django.http import *
 from base_site.forms import ContactForm, NewsLetterForm
 from django.contrib import messages
 
-# Create your views here.
+
+def maintenance(request):
+    return HttpResponse("""
+    <h1>Website Is Not Deployed Yet</h1>
+    <p>Coming Soon...</p>
+    """)
+
 def index_home(request):
     return render(request, 'website/index.html')
 
