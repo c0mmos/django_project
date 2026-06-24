@@ -82,8 +82,18 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'taggit',
     'django_summernote',
-    'accounts'
+    'accounts',
+     "compressor"
 ]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+]
+
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
