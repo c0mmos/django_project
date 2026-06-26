@@ -93,7 +93,7 @@ STATICFILES_FINDERS = [
 ]
 
 COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = False
+COMPRESS_OFFLINE = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
